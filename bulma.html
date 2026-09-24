@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bulma Navbar with Logo and Text</title>
+
+  <!-- Bulma CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.4/css/bulma.min.css"
+  />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #222222;
+      --navbar-bg: #00d1b2;
+      --navbar-text: #1a1a1a;
+      --dropdown-bg: #ffffff;
+      --dropdown-text: #222222;
+      --dropdown-hover: #f5f5f5;
+    }
+
+    html[data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --navbar-bg: #1f2d3d;
+      --navbar-text: #f0f0f0;
+      --dropdown-bg: #2c3e50;
+      --dropdown-text: #f0f0f0;
+      --dropdown-hover: #3d566e;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .navbar {
+      background-color: var(--navbar-bg);
+      color: var(--navbar-text);
+      transition: background-color 0.3s ease;
+    }
+    .navbar a.navbar-item,
+    .navbar a.navbar-link {
+      color: var(--navbar-text);
+      font-weight: 600;
+    }
+    .navbar a.navbar-item:hover,
+    .navbar a.navbar-link:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: var(--navbar-text);
+    }
+
+    /* Navbar brand logo image: restrict height */
+    .navbar-item img {
+      max-height: 3rem;
+      width: auto;
+    }
+
+    /* Text next to logo */
+    .navbar-brand-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1;
+      color: var(--navbar-text);
+      margin-left: 0.5rem;
+      white-space: nowrap;
+      align-self: center;
+      cursor: pointer;
+    }
+
+    .navbar-dropdown {
+      background-color: var(--dropdown-bg);
+      color: var(--dropdown-text);
+      min-width: 200px;
+    }
+    .navbar-dropdown .navbar-item {
+      color: var(--dropdown-text);
+    }
+    .navbar-dropdown .navbar-item:hover {
+      background-color: var(--dropdown-hover);
+      color: var(--dropdown-text);
+    }
+
+    .navbar-item.has-dropdown .navbar-dropdown {
+      display: none;
+    }
+    .navbar-item.has-dropdown.is-active > .navbar-dropdown {
+      display: block;
+    }
+
+    @media (min-width: 1024px) {
+      .navbar-item.has-dropdown:hover > .navbar-dropdown {
+        display: block;
+      }
+      .navbar-dropdown .has-dropdown:hover .navbar-dropdown {
+        display: block;
+        position: absolute;
+        left: 100%;
+        top: 0;
+      }
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .theme-toggle {
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+      color: var(--navbar-text);
+    }
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img
+          src="logo.png"
+          alt="MyBrand Logo"
+          width="112"
+          height="28"
+        />
+      </a>
+      <a href="/" class="navbar-brand-text">MyBrand</a>
+      <a
+        role="button"
+        class="navbar-burger"
+        aria-label="menu"
+        aria-expanded="false"
+        data-target="navMenu"
+      >
+        <span></span><span></span><span></span>
+      </a>
+    </div>
+
+    <div id="navMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="#"><i class="fas fa-home"></i>&nbsp;Home</a>
+
+        <div class="navbar-item has-dropdown">
+          <a class="navbar-link"
+            ><i class="fas fa-cogs"></i>&nbsp;Services</a
+          >
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Web Design</a>
+            <a class="navbar-item" href="#">Development</a>
+
+            <div class="navbar-item has-dropdown">
+              <a class="navbar-link">SEO &amp; Marketing</a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item" href="#">SEO</a>
+                <a class="navbar-item" href="#">Social Media</a>
+                <a class="navbar-item" href="#">Content Marketing</a>
+              </div>
+            </div>
+
+            <a class="navbar-item" href="#">Consulting</a>
+          </div>
+        </div>
+
+        <a class="navbar-item" href="#"
+          ><i class="fas fa-info-circle"></i>&nbsp;About</a
+        >
+        <a class="navbar-item" href="#"
+          ><i class="fas fa-envelope"></i>&nbsp;Contact</a
+        >
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <span
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle light/dark mode"
+            role="button"
+            tabindex="0"
+            ><i class="fas fa-moon"></i
+          ></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Welcome to Our Professional Page</h1>
+      <p class="subtitle">
+        Now featuring accessible Light/Dark mode 🌙☀️, a logo, and text next to it
+      </p>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".navbar-burger").forEach((b) => {
+        b.addEventListener("click", () => {
+          const target = document.getElementById(b.dataset.target);
+          b.classList.toggle("is-active");
+          target.classList.toggle("is-active");
+        });
+      });
+
+      document
+        .querySelectorAll(".navbar-item.has-dropdown > .navbar-link")
+        .forEach((link) => {
+          link.addEventListener("click", (e) => {
+            if (window.innerWidth < 1024) {
+              e.preventDefault();
+              link.parentNode.classList.toggle("is-active");
+            }
+          });
+        });
+
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById("themeToggle");
+      const icon = toggleBtn.querySelector("i");
+
+      const saved = localStorage.getItem("theme");
+      if (saved) {
+        html.setAttribute("data-theme", saved);
+        icon.className = saved === "dark" ? "fas fa-sun" : "fas fa-moon";
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        html.setAttribute("data-theme", "dark");
+        icon.className = "fas fa-sun";
+      }
+
+      toggleBtn.addEventListener("click", () => {
+        let current = html.getAttribute("data-theme");
+        let next = current === "dark" ? "light" : "dark";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        icon.className = next === "dark" ? "fas fa-sun" : "fas fa-moon";
+      });
+    });
+  </script>
+</body>
+</html>
